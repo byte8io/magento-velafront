@@ -1,0 +1,102 @@
+type Query {
+    velaFrontCmsPage(
+        identifier: String! @doc(description: "Identifier or URL key of the CMS page")
+    ): VelaFrontCmsPage @resolver(class: "Byte8\\VelaFront\\Model\\Resolver\\CmsPage") @doc(description: "Returns a CMS page with structured Page Builder content.") @cache(cacheIdentity: "Byte8\\VelaFront\\Model\\Resolver\\Cache\\CmsPageIdentity")
+
+    velaFrontCmsBlock(
+        identifier: String! @doc(description: "Identifier of the CMS block")
+    ): VelaFrontCmsBlock @resolver(class: "Byte8\\VelaFront\\Model\\Resolver\\CmsBlock") @doc(description: "Returns a CMS block with structured Page Builder content.") @cache(cacheIdentity: "Byte8\\VelaFront\\Model\\Resolver\\Cache\\CmsBlockIdentity")
+}
+
+type VelaFrontCmsPage @doc(description: "A CMS page with structured Page Builder content alongside raw HTML.") {
+    identifier: String @doc(description: "Identifier of the CMS page")
+    url_key: String @doc(description: "URL key for the page")
+    title: String @doc(description: "Page title")
+    content_heading: String @doc(description: "Heading shown above the content")
+    meta_title: String
+    meta_description: String
+    meta_keywords: String
+    content_html: String @doc(description: "Raw Page Builder HTML (fallback)")
+    content: VelaFrontCmsContent @doc(description: "Structured Page Builder content tree")
+}
+
+type VelaFrontCmsBlock @doc(description: "A CMS block with structured Page Builder content alongside raw HTML.") {
+    identifier: String
+    title: String
+    content_html: String
+    content: VelaFrontCmsContent
+}
+
+type VelaFrontCmsContent @doc(description: "Root container for structured Page Builder content.") {
+    version: String @doc(description: "Parser version used to generate this payload")
+    nodes: [VelaFrontCmsNode!] @doc(description: "Top-level content nodes")
+}
+
+type VelaFrontCmsNode @doc(description: "A single Page Builder content node.") {
+    content_type: String! @doc(description: "Page Builder content type (row, column, text, image, ...)")
+    appearance: String @doc(description: "Content-type appearance modifier")
+    data: VelaFrontCmsNodeData
+    children: [VelaFrontCmsNode!]
+}
+
+type VelaFrontCmsNodeData @doc(description: "Flattened data properties for a content node. Keys are content-type specific.") {
+    html: String @doc(description: "Inner HTML for text/heading/html nodes, with Magento directives resolved")
+    heading_type: String @doc(description: "h1-h6 for heading nodes")
+    link_url: String @doc(description: "Resolved URL for linked nodes")
+    link_target: String
+
+    image_url: String @doc(description: "Resolved media URL")
+    image_alt: String
+    image_width: Int
+    image_height: Int
+    mobile_image_url: String
+
+    background_color: String
+    background_image: String @doc(description: "Resolved desktop background image URL")
+    background_position: String
+    background_size: String
+    background_repeat: String
+    background_type: String
+    video_url: String
+
+    product_skus: [String!]
+    product_count: Int
+    product_conditions: String
+
+    autoplay: Boolean
+    autoplay_speed: Int
+    infinite_loop: Boolean
+    show_arrows: Boolean
+    show_dots: Boolean
+
+    tab_name: String
+    active_tab: Int
+
+    button_text: String
+    button_type: String
+
+    block_identifier: String
+
+    widget_type: String @doc(description: "Magento widget PHP class")
+    widget_attrs: String @doc(description: "JSON-encoded attribute map for widget directives")
+
+    text_align: String
+    css_classes: String
+    margins: VelaFrontSpacing
+    padding: VelaFrontSpacing
+    border: VelaFrontBorder
+}
+
+type VelaFrontSpacing {
+    top: String
+    right: String
+    bottom: String
+    left: String
+}
+
+type VelaFrontBorder {
+    style: String
+    color: String
+    width: String
+    radius: String
+}
