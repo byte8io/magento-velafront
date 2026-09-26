@@ -2,7 +2,7 @@
 
 **VelaFront is a modern headless storefront for Magento 2 (Adobe Commerce)** — a fast, SEO-first frontend built on **Next.js 15**, **React 19**, **TypeScript**, **Tailwind CSS**, and **shadcn/ui**, talking to Magento entirely over **GraphQL**. It's a production-grade alternative to Luma, PWA Studio, and Hyvä for merchants who want a decoupled React frontend without giving up Magento's catalog, checkout, and Page Builder content.
 
-- 🌐 **Website:** [velafront.com](https://velafront.com)
+- 🌐 **Website:** [byte8.io/integrations/velafront](https://byte8.io/integrations/velafront)
 - 🏢 **By:** [Byte8 Ltd](https://byte8.io)
 
 > This repository is **`byte8/module-velafront`** — the Magento 2 **companion module** that powers VelaFront's CMS layer. It exposes Magento **Page Builder** content as clean, structured JSON via GraphQL so the headless frontend can render native React components instead of dumping raw HTML. See [The companion module](#the-companion-module) below. The storefront application itself lives in the VelaFront theme monorepo.
@@ -101,7 +101,7 @@ Both queries are cached via Magento's GraphQL resolver cache, tagged by CMS page
 
 ## Documentation
 
-Full architecture, SEO, CMS rendering, URL routing, and configuration guides ship with the VelaFront theme (`docs/`), covering the technical architecture, Core Web Vitals strategy, and Page Builder rendering model. Learn more at [velafront.com](https://velafront.com).
+Full architecture, SEO, CMS rendering, URL routing, and configuration guides ship with the VelaFront theme (`docs/`), covering the technical architecture, Core Web Vitals strategy, and Page Builder rendering model. Learn more at [byte8.io/integrations/velafront](https://byte8.io/integrations/velafront).
 
 ## Support
 
@@ -109,4 +109,4 @@ Byte8 Ltd — support@byte8.io
 
 ## License
 
-Proprietary — © [Byte8 Ltd](https://byte8.io). Commercial licensing for VelaFront is available at [velafront.com](https://velafront.com). See `LICENSE` for details.
+Proprietary — © [Byte8 Ltd](https://byte8.io). Commercial licensing for VelaFront is available at [byte8.io/integrations/velafront](https://byte8.io/integrations/velafront). See `LICENSE` for details.
